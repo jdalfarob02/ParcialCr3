@@ -6,17 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateDetalleFacturaTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+        public function up()
     {
         Schema::create('detalle_factura', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id',11);
 
-            $table->bigInteger('factura_id')->unsigned();
+            $table->Integer('factura_id')->unsigned();
             $table->Double('Valor');
 
             $table->foreign('factura_id')
@@ -26,12 +21,7 @@ class CreateDetalleFacturaTable extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+   
     public function down()
     {
         Schema::dropIfExists('detalle_factura');

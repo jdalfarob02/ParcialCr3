@@ -6,23 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFacturasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
         Schema::create('facturas', function (Blueprint $table) {
-            $table->id();
-
-            $table->Integer('Total');
-            $table->Integer('Abono');
-            $table->Integer('Saldo');
-            $table->String('Estado');
-
-            $table->bigInteger('servicio_id')->unsigned();
-            
+            $table->increments('id');
+            $table->double('Total');
+            $table->double('Abono');
+            $table->double('Saldo');
+            $table->integer('Estado');
+            $table->Integer('servicio_id')->unsigned();
             $table->foreign('servicio_id')
             ->references('id')
             ->on('servicios');
@@ -30,12 +23,6 @@ class CreateFacturasTable extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('facturas');

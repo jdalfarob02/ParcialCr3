@@ -6,33 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateServiciosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+     public function up()
     {
         Schema::create('servicios', function (Blueprint $table) {
-            $table->id();
-            $table->String('NomServicio');
-            $table->String('Precio');
+            $table->increments('id');
+            $table->string('NomServicio');
+            $table->double('Precio');
+            $table->string('Descripcion');
             
-            $table->bigInteger('categoria_id')->unsigned();
+            $table->Integer('categoria_id')->unsigned();
 
-          $table->foreign('categoria_id')
-            ->references('id')
-            ->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
 
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('servicios');
